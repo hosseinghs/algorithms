@@ -1,3 +1,6 @@
+// uses objects to collect value/frequencies of values
+// this pattern can avoid using nested loops or O(N^2) operations with array or strings
+
 // task1: write a function called same, which accepts to arrays.
 // the function should return true if every value in the array has it's
 // corresponding value squared in the second array.
