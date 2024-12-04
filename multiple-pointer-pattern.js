@@ -34,18 +34,14 @@ function sumZero (arr) {
 // taks2: implement a function called countUniqueValues which
 // accepts a sorted array and counts the uniuqe values in the array.
 // there can be negative numbers in the array, but it will always be sorted
-
 function countUniqueValues(arr) {
-    if(!arr.length) return
-    let i = 0
-    let j = arr.length - 1
-    let uniqeCounts = 0
-
-    while(i !== j) {
-        if (arr[i] !== arr[j]) {
-            uniqeCounts++
-            i = i + 1
+    if (arr.length === 0) return 0;
+    
+    let uniqueCount = 1; 
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] !== arr[i - 1]) {
+            uniqueCount++;
         }
     }
-    return uniqeCounts
+    return uniqueCount;
 }
