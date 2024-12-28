@@ -67,4 +67,66 @@ class DoublyLinkedList {
         this.length++
         return this
     }
+    get(index) {
+        if (index < 0 || index >= this.length) return null
+        if (this.length === 1) return this.head
+
+        let count = 0
+        let currentItem = this.head
+        
+        if (index <= this.length / 2) {
+            while (count < index) {
+                currentItem = currentItem.next
+                index++
+            }
+        } else {
+            while (count > index) {
+                currentItem = currentItem.perv
+                count--
+            }
+        }
+
+        return currentItem
+    }
+    set(index, val) {
+        if (index < 0 || !val) return false
+        const currentItem = this.get(index);
+        if (currentItem) currentItem.val = val
+        return true
+    }
+    insert(index, val) {
+        if (index < 0 || index > this.length) return false
+        if (index === 0) return !!this.unshift(val)
+        if (index === this.length) return !!this.push(val)
+       
+        const newNode = new Node(val)
+        const pervNode = this.get(index - 1);
+        const nextNode = pervNode.next;
+
+        pervNode.next = newNode
+        newNode.perv = pervNode
+        newNode.next = nextNode
+        nextNode.perv = newNode
+
+        this.length++
+
+        return true
+    }
+    remove(index) {
+        if (index < 0 || index >= this.length) return undefined
+        if (index === 0) return this.shift()
+        if (index === this.length - 1) return this.pop()
+
+        const removedNode = this.get(index)
+        const pervNode = removedNode.perv
+        const nextNode = removedNode.next
+
+        pervNode.next = nextNode
+        nextNode.perv = pervNode
+        
+        this.length--
+        
+        return true
+    }
+    reverse () {}
 }
