@@ -54,6 +54,7 @@ class BinarySearchTree {
   // 01. breadth first search
   // 02. depth first search
 
+  // 0.1 breadth first search
   BFS() {
     const data = [];
     const queue = [];
@@ -69,6 +70,20 @@ class BinarySearchTree {
     return data
   }
 
+  // 0.2 depth first search - PreOrder
+  DFSPreOrder() {
+    const visitedNodes = []
+
+    function traverse(node) {
+      visitedNodes.push(node.value)
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+    }
+
+    traverse(this.root)
+
+    return visitedNodes
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -80,4 +95,4 @@ tree.insert(3)
 tree.insert(8)
 tree.insert(20)
 
-console.log(tree.BFS());
+console.log(tree.DFSPreOrder());
