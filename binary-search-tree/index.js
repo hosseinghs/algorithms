@@ -50,13 +50,34 @@ class BinarySearchTree {
 
     return current || found
   }
+  // tree traversal
+  // 01. breadth first search
+  // 02. depth first search
+
+  BFS() {
+    const data = [];
+    const queue = [];
+    let node = this.root;
+
+    queue.push(node);
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return data
+  }
+
 }
 
 const tree = new BinarySearchTree();
 
 tree.insert(10)
-tree.insert(11)
-tree.insert(9)
 tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)
 
-console.log(tree.find(9));
+console.log(tree.BFS());
